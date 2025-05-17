@@ -15,16 +15,20 @@ document.querySelectorAll("nav a").forEach(link => {
         opacity: 0,
         onComplete: () => {
           currentPanel.classList.remove("active");
-          currentPanel.style.transform = "";
+          currentPanel.style.left = "100%"; // Reset position
         }
       });
 
-      // Animate in next panel
+      // Prepare next panel
+      nextPanel.style.left = "100%";
       nextPanel.classList.add("active");
-      gsap.fromTo(nextPanel, 
-        { x: "100%", opacity: 0 }, 
-        { duration: 0.5, x: "0%", opacity: 1 }
-      );
+
+      // Animate in
+      gsap.to(nextPanel, {
+        duration: 0.5,
+        x: "0%",
+        opacity: 1
+      });
 
       currentPanel = nextPanel;
     }

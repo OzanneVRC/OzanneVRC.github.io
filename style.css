@@ -38,8 +38,18 @@ nav a:hover {
 
 .panel-container {
   position: relative;
-  width: 100%;
-  height: calc(100vh - 60px);
+  width: 90%;
+  max-width: 900px;
+  height: 80vh;
+  margin: 3rem auto;
+  background: rgba(255, 255, 255, 0.03); /* subtle white blur base */
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.3),
+    0 0 60px rgba(0, 255, 255, 0.1),
+    inset 0 0 15px rgba(0, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
   overflow: hidden;
 }
 
@@ -51,6 +61,18 @@ nav a:hover {
   left: 100%;
   padding: 2rem;
   opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #cceeff;
+  font-family: 'Noto Serif JP', serif;
+}
+
+.panel h1 {
+  font-size: 2.5rem;
+  color: #00eaff;
+  text-shadow:
+    0 0 5px #00eaff,
+    0 0 10px #00eaff,
+    0 0 20px #00eaff;
 }
 
 .panel.active {
