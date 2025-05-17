@@ -1,22 +1,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  document.addEventListener("DOMContentLoaded", () => {
+   document.addEventListener("DOMContentLoaded", () => {
     const panels = document.querySelectorAll(".panel");
-    const activePanel = document.querySelector(".panel.active");
+    let currentPanel = document.querySelector(".panel.active");
 
+    // Fallback: If no active panel is set in HTML, default to first
+    if (!currentPanel) {
+      currentPanel = panels[0];
+      currentPanel.classList.add("active");
+    }
+
+    // Set panel positions
     panels.forEach(panel => {
-      if (panel !== activePanel) {
-        // Set all other panels offscreen and invisible
-        gsap.set(panel, { x: "100%", opacity: 0 });
-        panel.classList.remove("active");
-      } else {
-        // Make sure active panel is in position
+      if (panel === currentPanel) {
         gsap.set(panel, { x: "0%", opacity: 1 });
         panel.classList.add("active");
+      } else {
+        gsap.set(panel, { x: "100%", opacity: 0 });
+        panel.classList.remove("active");
       }
     });
 
-    let currentPanel = activePanel;
-
+    // Navigation logic
     document.querySelectorAll("nav a").forEach(link => {
       link.addEventListener("click", e => {
         e.preventDefault();
@@ -25,9 +29,11 @@
 
         if (!nextPanel || nextPanel === currentPanel) return;
 
+        // Start next panel offscreen right
         gsap.set(nextPanel, { x: "100%", opacity: 1 });
         nextPanel.classList.add("active");
 
+        // Slide current out left
         gsap.to(currentPanel, {
           duration: 0.6,
           x: "-100%",
@@ -38,6 +44,7 @@
           }
         });
 
+        // Slide next in
         gsap.to(nextPanel, {
           duration: 0.6,
           x: "0%",
