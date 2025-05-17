@@ -6,11 +6,33 @@
   <title>FuturisticStudio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
 </head>
+<script>
+  // Reveal sections on scroll
+  const sections = document.querySelectorAll("section");
+
+  const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < triggerBottom) {
+        section.classList.add("visible");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("load", revealOnScroll);
+</script>
 <body>
   <!-- Navigation Bar -->
   <header>
-    <div class="logo">FuturisticStudio</div>
+    <div class="logo">
+        FuturisticStudio
+    <span class="kanji">追憶</span>
+  </div>
     <nav>
       <a href="#">Home</a>
       <a href="#">Projects</a>
@@ -18,6 +40,8 @@
       <a href="#">Contact</a>
     </nav>
   </header>
+
+  
 
   <!-- Hero Section -->
   <section class="hero">
