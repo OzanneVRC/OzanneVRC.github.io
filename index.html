@@ -3,103 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FuturisticStudio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter&display=swap" rel="stylesheet">
+  <title>FuturisticStudio — 追憶</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-<script>
-  // Reveal sections on scroll
-  const sections = document.querySelectorAll("section");
 
-  const revealOnScroll = () => {
-    const triggerBottom = window.innerHeight * 0.85;
-
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top < triggerBottom) {
-        section.classList.add("visible");
-      }
-    });
-  };
-
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("load", revealOnScroll);
-</script>
 <body>
-  <!-- Navigation Bar -->
   <header>
     <div class="logo">
-        FuturisticStudio
-    <span class="kanji">追憶</span>
-  </div>
+      FuturisticStudio<br /><span class="kanji">追憶</span>
+    </div>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Projects</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
+      <a href="#" data-page="home">Home</a>
+      <a href="#" data-page="projects">Projects</a>
+      <a href="#" data-page="clients">Clients</a>
+      <a href="#" data-page="contact">Contact</a>
     </nav>
   </header>
 
-  
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>FuturisticStudio</h1>
-    <p>We bring digital dreams to life with futuristic aesthetics and nostalgic tech vibes.</p>
-    <button>Explore Work</button>
-  </section>
-
-  <!-- Features / Highlights -->
-  <section class="features">
-    <div class="feature">
-      <h3>🏆 Award-Winning</h3>
-      <p>Recognized by top creative institutions.</p>
+  <!-- Tablet-style Panel Container -->
+  <div class="panel-container">
+    <div class="panel active" id="home">
+      <h1>Welcome</h1>
+      <p>This is the home panel. It opens by default.</p>
     </div>
-    <div class="feature">
-      <h3>⚙️ Advanced Technology</h3>
-      <p>We use cutting-edge tools and AI pipelines.</p>
+    <div class="panel" id="projects">
+      <h1>Projects</h1>
+      <p>Your featured projects go here.</p>
     </div>
-    <div class="feature">
-      <h3>✅ Trusted</h3>
-      <p>Worked with global brands and creators.</p>
+    <div class="panel" id="clients">
+      <h1>Clients</h1>
+      <p>List of clients or testimonials.</p>
     </div>
-  </section>
+    <div class="panel" id="contact">
+      <h1>Contact</h1>
+      <p>Email, phone, or social links.</p>
+    </div>
+  </div>
 
-  <!-- Trusted By Logos -->
-  <section class="trusted">
-    <h2>Trusted By</h2>
-    <div class="logos">
-      <img src="logo_ibm.png" alt="IBM" />
-      <img src="logo_ford.png" alt="Ford" />
-      <img src="logo_tomford.png" alt="Tom Ford" />
-      <img src="logo_nestle.png" alt="Nestle" />
-    </div>
-  </section>
-
-  <!-- Featured Projects -->
-  <section class="projects">
-    <h2>Featured Projects</h2>
-    <div class="project-grid">
-      <img src="project1.jpg" alt="Project 1" />
-      <img src="project2.jpg" alt="Project 2" />
-      <img src="project3.jpg" alt="Project 3" />
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="stats">
-    <div><h3>40</h3><p>Projects Worked</p></div>
-    <div><h3>24</h3><p>Clients Worked With</p></div>
-    <div><h3>14</h3><p>Awards Won</p></div>
-  </section>
-
-  <!-- Contact Footer -->
-  <footer>
-    <div>
-      <p>📧 futuristic@studio.io</p>
-      <p>📞 +1 (999) 999-9999</p>
-    </div>
-  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
