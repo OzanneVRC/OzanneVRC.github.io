@@ -19,7 +19,7 @@ document.querySelectorAll("nav a").forEach(link => {
         ease: "power2.inOut",
         onComplete: () => {
           currentPanel.classList.remove("active");
-          gsap.set(currentPanel, { x: "0%", opacity: 0 });
+          gsap.set(currentPanel, { x: "0%", opacity: 1 });
         }
       });
 
