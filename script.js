@@ -8,26 +8,26 @@ document.querySelectorAll("nav a").forEach(link => {
     const nextPanel = document.getElementById(targetId);
 
     if (nextPanel !== currentPanel) {
-      // Animate out current panel
+      // Move next panel offscreen to the right
+      gsap.set(nextPanel, { x: "100%", opacity: 1 });
+      nextPanel.classList.add("active");
+
+      // Animate current panel out to the left
       gsap.to(currentPanel, {
         duration: 0.5,
         x: "-100%",
-        opacity: 0,
+        ease: "power2.inOut",
         onComplete: () => {
           currentPanel.classList.remove("active");
-          currentPanel.style.left = "100%"; // Reset position
+          gsap.set(currentPanel, { x: "0%", opacity: 0 });
         }
       });
 
-      // Prepare next panel
-      nextPanel.style.left = "100%";
-      nextPanel.classList.add("active");
-
-      // Animate in
+      // Animate new panel in from the right
       gsap.to(nextPanel, {
         duration: 0.5,
         x: "0%",
-        opacity: 1
+        ease: "power2.inOut"
       });
 
       currentPanel = nextPanel;
