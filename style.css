@@ -1,8 +1,7 @@
-/* styles.css */
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #0d0d1a;
+  background: #0a0a1a;
   color: white;
   overflow: hidden;
 }
@@ -10,40 +9,54 @@ body {
 nav {
   display: flex;
   justify-content: flex-end;
-  padding: 1rem;
+  padding: 1rem 2rem;
   background: #111122;
 }
 
 nav a {
-  color: #00ccff;
+  color: #00eaff;
   text-decoration: none;
   margin-left: 2rem;
   font-weight: bold;
+  transition: color 0.2s ease;
 }
 
-.panel-container {
+nav a:hover {
+  color: #66ffff;
+}
+
+/* Tablet frame styling */
+.tablet {
   position: relative;
-  width: 100%;
-  height: calc(100vh - 60px); /* adjust if nav is taller */
+  margin: 3rem auto;
+  width: 80vw;
+  max-width: 1000px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  border-radius: 20px;
   overflow: hidden;
+  backdrop-filter: blur(12px);
 }
 
+/* Panels */
 .panel {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   padding: 2rem;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
   opacity: 0;
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+/* For transition visibility */
 .panel.active {
   opacity: 1;
   pointer-events: auto;

@@ -1,51 +1,53 @@
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
   const panels = document.querySelectorAll(".panel");
   const links = document.querySelectorAll("nav a");
 
-  let currentPanel = document.querySelector(".panel.active");
-  if (!currentPanel) {
-    currentPanel = panels[0];
-    currentPanel.classList.add("active");
-    gsap.set(currentPanel, { x: "0%", opacity: 1 });
-  }
+  let currentPanel = document.getElementById("home");
 
-  // Set all panels offscreen right except active one
+  // Make sure only the current panel is shown initially
   panels.forEach(panel => {
     if (panel !== currentPanel) {
-      gsap.set(panel, { x: "100%", opacity: 0 });
+      gsap.set(panel, { x: "100%", opacity: 0, pointerEvents: "none" });
     } else {
-      gsap.set(panel, { x: "0%", opacity: 1 });
+      gsap.set(panel, { x: "0%", opacity: 1, pointerEvents: "auto" });
+      panel.classList.add("active");
     }
   });
 
   links.forEach(link => {
-    link.addEventListener("click", e => {
+    link.addEventListener("click", (e) => {
       e.preventDefault();
+
       const targetId = link.getAttribute("data-page");
       const nextPanel = document.getElementById(targetId);
+
       if (!nextPanel || nextPanel === currentPanel) return;
 
-      // Move new panel onscreen
-      gsap.set(nextPanel, { x: "100%", opacity: 1 });
-      nextPanel.classList.add("active");
-
-      // Animate current out
+      // Slide out current panel
       gsap.to(currentPanel, {
-        duration: 0.6,
         x: "-100%",
+        opacity: 0,
+        duration: 0.5,
         ease: "power2.inOut",
         onComplete: () => {
           currentPanel.classList.remove("active");
-          gsap.set(currentPanel, { x: "100%", opacity: 0 });
+          gsap.set(currentPanel, { pointerEvents: "none" });
         }
       });
 
-      // Animate next in
+      // Prepare next panel
+      gsap.set(nextPanel, { x: "100%", opacity: 0, pointerEvents: "none" });
+      nextPanel.classList.add("active");
+
+      // Slide in next panel
       gsap.to(nextPanel, {
-        duration: 0.6,
         x: "0%",
-        ease: "power2.inOut"
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.inOut",
+        onStart: () => {
+          gsap.set(nextPanel, { pointerEvents: "auto" });
+        }
       });
 
       currentPanel = nextPanel;
