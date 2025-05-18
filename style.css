@@ -70,17 +70,17 @@ h1, h2, h3 {
 }
 
 #site-wrapper {
-  opacity: 0;
-  transform: translateY(30px);
+  /* opacity: 0;
+  transform: translateY(30px); */
 }
 
 .nav button {
-  opacity: 0;
-  transform: translateY(10px);
+  /* opacity: 0;
+  transform: translateY(10px); */
 }
 
 .panel h1,
 .panel p {
-  opacity: 0;
-  transform: translateY(20px);
+  /* opacity: 0;
+  transform: translateY(20px); */
 }

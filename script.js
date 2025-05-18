@@ -40,31 +40,31 @@ buttons.forEach(button => {
 window.addEventListener('load', () => {
   const timeline = gsap.timeline();
 
-  // Animate the whole site into view
-  timeline.to('#site-wrapper', {
-    opacity: 1,
-    y: 0,
+  // Animate the whole site from invisible and lowered
+  timeline.from('#site-wrapper', {
+    opacity: 0,
+    y: 30,
     duration: 1,
     ease: 'power2.out'
   });
 
-  // Animate nav buttons
-  timeline.to('.nav button', {
-    opacity: 1,
-    y: 0,
+  // Animate nav buttons from hidden
+  timeline.from('.nav button', {
+    opacity: 0,
+    y: 10,
     stagger: 0.1,
     duration: 0.6,
     ease: 'power2.out'
-  }, '-=0.6'); // Overlap slightly with site-wrapper animation
+  }, '-=0.6'); // Overlap with previous
 
-  // Animate the visible panel (default is .panel.active)
-  timeline.to('.panel.active h1, .panel.active p', {
-    opacity: 1,
-    y: 0,
+  // Animate the visible panel's content
+  timeline.from('.panel.active h1, .panel.active p', {
+    opacity: 0,
+    y: 20,
     stagger: 0.15,
     duration: 0.6,
     ease: 'power2.out'
-  }, '-=0.4'); // Overlap slightly with nav buttons
+  }, '-=0.4');
 });
   });
 });
