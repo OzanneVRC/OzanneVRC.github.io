@@ -36,21 +36,35 @@ buttons.forEach(button => {
 
     currentPanel = targetPanel;
 
-    window.addEventListener('load', () => {
-  gsap.to('.kanji', {
-    y: 0,
+// Divider
+window.addEventListener('load', () => {
+  const timeline = gsap.timeline();
+
+  // Animate the whole site into view
+  timeline.to('#site-wrapper', {
     opacity: 1,
+    y: 0,
     duration: 1,
     ease: 'power2.out'
   });
 
-  gsap.to('.romaji', {
-    y: 0,
+  // Animate nav buttons
+  timeline.to('.nav button', {
     opacity: 1,
-    delay: 0.5,
-    duration: 1,
+    y: 0,
+    stagger: 0.1,
+    duration: 0.6,
     ease: 'power2.out'
-  });
+  }, '-=0.6'); // Overlap slightly with site-wrapper animation
+
+  // Animate the visible panel (default is .panel.active)
+  timeline.to('.panel.active h1, .panel.active p', {
+    opacity: 1,
+    y: 0,
+    stagger: 0.15,
+    duration: 0.6,
+    ease: 'power2.out'
+  }, '-=0.4'); // Overlap slightly with nav buttons
 });
   });
 });

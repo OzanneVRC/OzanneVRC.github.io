@@ -69,24 +69,18 @@ h1, h2, h3 {
   pointer-events: all;
 }
 
-.animated-title {
-  text-align: center;
-  margin-top: 5rem;
-}
-
-.animated-title .kanji {
-  font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
-  font-size: 5rem;
-  letter-spacing: 0.2rem;
+#site-wrapper {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px);
 }
 
-.animated-title .romaji {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 1.5rem;
-  color: #aaa;
-  margin-top: 0.5rem;
+.nav button {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.panel h1,
+.panel p {
   opacity: 0;
   transform: translateY(20px);
 }

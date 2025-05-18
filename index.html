@@ -10,7 +10,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-  <div class="tablet">
+  <div id="site-wrapper">
+    <div class="tablet">
     <nav class="nav">
       <button data-target="home">Home</button>
       <button data-target="projects">Projects</button>
@@ -19,10 +20,6 @@
     </nav>
     <div class="panels">
       <section class="panel active" id="home">
-        <div class="animated-title">
-          <h1 class="kanji">追憶</h1>
-          <h2 class="romaji">Recollection</h2>
-        </div>
         <h1>Welcome Home 追憶</h1>
         <p>This is your animated portfolio.</p>
       </section>
@@ -40,6 +37,7 @@
       </section>
     </div>
   </div>
+</div>
 
   <script src="script.js"></script>
 </body>
