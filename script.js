@@ -1,75 +1,44 @@
-// script.js
-const buttons = document.querySelectorAll('.nav button');
-const panels = document.querySelectorAll('.panel');
-let currentPanel = document.querySelector('.panel.active');
-
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    const targetId = button.getAttribute('data-target');
-    const targetPanel = document.getElementById(targetId);
-
-    if (targetPanel === currentPanel) return;
-
-    // Animate the current panel out
-    gsap.to(currentPanel, {
-      x: '-100%',
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.inOut',
-      onComplete: () => {
-        currentPanel.classList.remove('active');
-        currentPanel.style.transform = 'translateX(100%)';
-      }
-    });
-
-    // Animate the new panel in
-    targetPanel.classList.add('active');
-    gsap.fromTo(targetPanel,
-      { x: '100%', opacity: 0 },
-      {
-        x: '0%',
-        opacity: 1,
-        duration: 0.6,
-        ease: 'power2.inOut'
-      }
-    );
-
-    currentPanel = targetPanel;
-
-// Divider
-console.log("🎬 Script running");
+console.log("🎬 Script running"); // Check if script loads at all
 
 document.addEventListener('DOMContentLoaded', () => {
-  const tl = gsap.timeline();
+  console.log("✅ DOM fully loaded");
 
-  // Fade in site wrapper and restore pointer events
-  tl.to('#site-wrapper', {
+  const wrapper = document.getElementById('site-wrapper');
+  if (!wrapper) {
+    console.error("❌ Couldn't find #site-wrapper");
+    return;
+  }
+
+  // Fade in the whole site
+  gsap.to(wrapper, {
     opacity: 1,
     duration: 1,
     ease: 'power2.out',
     onComplete: () => {
-      document.getElementById('site-wrapper').style.pointerEvents = 'auto';
+      wrapper.style.pointerEvents = 'auto';
+      console.log("✅ Animation complete, site visible");
     }
   });
 
   // Animate nav buttons
-  tl.from('.nav button', {
+  gsap.from('.nav button', {
     opacity: 0,
     y: 20,
-    stagger: 0.1,
     duration: 0.6,
-    ease: 'power2.out'
-  }, '-=0.5');
+    ease: 'power2.out',
+    stagger: 0.1,
+    delay: 1 // Wait until wrapper is fully visible
+  });
 
-  // Animate active panel content
-  tl.from('.panel.active h1, .panel.active p', {
+  // Animate content of the active panel
+  gsap.from('.panel.active h1, .panel.active p', {
     opacity: 0,
     y: 30,
-    stagger: 0.15,
     duration: 0.8,
-    ease: 'power2.out'
-  }, '-=0.3');
-});
-
+    ease: 'power2.out',
+    stagger: 0.15,
+    delay: 1.2
   });
+
+  console.log("✅ Animation started");
 });
