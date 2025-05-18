@@ -37,6 +37,8 @@ buttons.forEach(button => {
     currentPanel = targetPanel;
 
 // Divider
+console.log("🎬 Script running");
+
 document.addEventListener('DOMContentLoaded', () => {
   const tl = gsap.timeline();
 
