@@ -35,5 +35,22 @@ buttons.forEach(button => {
     );
 
     currentPanel = targetPanel;
+
+    window.addEventListener('load', () => {
+  gsap.to('.kanji', {
+    y: 0,
+    opacity: 1,
+    duration: 1,
+    ease: 'power2.out'
+  });
+
+  gsap.to('.romaji', {
+    y: 0,
+    opacity: 1,
+    delay: 0.5,
+    duration: 1,
+    ease: 'power2.out'
+  });
+});
   });
 });
