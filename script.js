@@ -38,31 +38,30 @@ buttons.forEach(button => {
 
 // Divider
 window.addEventListener('load', () => {
-  const timeline = gsap.timeline();
+  const tl = gsap.timeline();
 
-  // Animate the whole site from invisible and lowered
-  timeline.from('#site-wrapper', {
-    opacity: 0,
-    y: 30,
+  // Fade in the site
+  tl.to('#site-wrapper', {
+    opacity: 1,
     duration: 1,
     ease: 'power2.out'
   });
 
-  // Animate nav buttons from hidden
-  timeline.from('.nav button', {
+  // Slide and reveal nav buttons
+  tl.from('.nav button', {
     opacity: 0,
-    y: 10,
+    y: 20,
     stagger: 0.1,
     duration: 0.6,
     ease: 'power2.out'
-  }, '-=0.6'); // Overlap with previous
+  }, '-=0.6'); // Overlaps with wrapper fade
 
-  // Animate the visible panel's content
-  timeline.from('.panel.active h1, .panel.active p', {
+  // Reveal content inside the default panel
+  tl.from('.panel.active h1, .panel.active p', {
     opacity: 0,
-    y: 20,
+    y: 30,
     stagger: 0.15,
-    duration: 0.6,
+    duration: 0.8,
     ease: 'power2.out'
   }, '-=0.4');
 });
