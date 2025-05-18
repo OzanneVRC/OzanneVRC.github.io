@@ -37,33 +37,37 @@ buttons.forEach(button => {
     currentPanel = targetPanel;
 
 // Divider
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const tl = gsap.timeline();
 
-  // Fade in the site
+  // Fade in site wrapper and restore pointer events
   tl.to('#site-wrapper', {
     opacity: 1,
     duration: 1,
-    ease: 'power2.out'
+    ease: 'power2.out',
+    onComplete: () => {
+      document.getElementById('site-wrapper').style.pointerEvents = 'auto';
+    }
   });
 
-  // Slide and reveal nav buttons
+  // Animate nav buttons
   tl.from('.nav button', {
     opacity: 0,
     y: 20,
     stagger: 0.1,
     duration: 0.6,
     ease: 'power2.out'
-  }, '-=0.6'); // Overlaps with wrapper fade
+  }, '-=0.5');
 
-  // Reveal content inside the default panel
+  // Animate active panel content
   tl.from('.panel.active h1, .panel.active p', {
     opacity: 0,
     y: 30,
     stagger: 0.15,
     duration: 0.8,
     ease: 'power2.out'
-  }, '-=0.4');
+  }, '-=0.3');
 });
+
   });
 });
