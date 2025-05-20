@@ -19,28 +19,26 @@ function openTab(evt, tabName) {
   evt.currentTarget.className =+ " active";
 }
 
-// GSAP neon flashing animation on page load with quicker, staticky flicker
+// GSAP animation: fade in logo, then snappy pulse-y flicker panel
 window.addEventListener('load', () => {
+  const logo = document.querySelector('.logo');
   const panel = document.querySelector('.panel');
   const tl = gsap.timeline();
 
-  // Helper function to generate random glow intensity
-  function randomGlow() {
-    const intensity = Math.random() * 20 + 5; // 5 to 25px
-    return `0 0 ${intensity}px ${intensity / 2}px #502430`;
-  }
+  // Fade in logo over 0.6 seconds
+  tl.to(logo, {duration: 0.6, opacity: 1, ease: "power2.inOut"});
 
-  // Create flicker timeline with random glow and opacity flickers
-  for (let i = 0; i < 10; i++) {
-    tl.to(panel, {
-      duration: 0.05,
-      opacity: Math.random() * 0.5 + 0.5, // 0.5 to 1 opacity
-      boxShadow: randomGlow(),
-      ease: "power1.inOut"
-    });
-  }
+  // Snappy pulse-y flicker animation for panel
+  tl.to(panel, {
+    duration: 0.1,
+    opacity: 0.7,
+    boxShadow: "0 0 10px 2px #502430",
+    ease: "power1.inOut",
+    yoyo: true,
+    repeat: 4
+  });
 
-  // Stabilize to full opacity and subtle glow
+  // Stabilize panel quickly
   tl.to(panel, {
     duration: 0.3,
     opacity: 1,
