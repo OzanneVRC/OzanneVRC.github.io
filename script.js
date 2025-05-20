@@ -19,7 +19,7 @@ function openTab(evt, tabName) {
   evt.currentTarget.className =+ " active";
 }
 
-// GSAP animation: fade in logo, then snappy pulse-y flicker panel
+// GSAP animation: fade in logo, then pulse-y flicker panel with smooth final fade-in
 window.addEventListener('load', () => {
   const logo = document.querySelector('.logo');
   const panel = document.querySelector('.panel');
@@ -28,21 +28,31 @@ window.addEventListener('load', () => {
   // Fade in logo over 0.6 seconds
   tl.to(logo, {duration: 0.6, opacity: 1, ease: "power2.inOut"});
 
-  // Snappy pulse-y flicker animation for panel
+  // Pulse-y flicker animation for panel with repeat count as is
   tl.to(panel, {
-    duration: 0.1,
+    duration: 0.08,
     opacity: 0.7,
     boxShadow: "0 0 10px 2px #502430",
     ease: "power1.inOut",
     yoyo: true,
-    repeat: 4
+    repeat: 3
   });
 
-  // Stabilize panel quickly
+  // Last flicker cycle: flick on, off, then smooth fade on
   tl.to(panel, {
-    duration: 0.3,
+    duration: 0.08,
+    opacity: 0.7,
+    boxShadow: "0 0 10px 2px #502430",
+    ease: "power1.inOut",
+    yoyo: true,
+    repeat: 1
+  });
+
+  // Smooth fade-in to full opacity and glow
+  tl.to(panel, {
+    duration: 0.4,
     opacity: 1,
     boxShadow: "0 0 15px 3px #502430",
-    ease: "power2.out"
+    ease: "power2.inOut"
   });
 });

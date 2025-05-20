@@ -91,6 +91,7 @@ body {
   max-height: 80vh;
   min-width: 300px;
   max-width: calc(100vw - 300px);
+  white-space: pre-line;
 }
 
 .ptabsContent p {
@@ -158,5 +159,6 @@ body {
     max-height: none;
     overflow-y: visible;
     padding: 1rem;
+    white-space: pre-line;
   }
 }
