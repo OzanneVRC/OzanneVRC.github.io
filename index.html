@@ -7,39 +7,46 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="data:,">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Zen+Maru+Gothic:wght@500&display=swap" rel="stylesheet">
-  
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <script src="script.js" defer></script>
 </head>
 <body>
-  <div id="site-wrapper">
-    <div class="tablet">
-    <nav class="nav">
-      <button data-target="home">Home</button>
-      <button data-target="projects">Projects</button>
-      <button data-target="clients">Clients</button>
-      <button data-target="contact">Contact</button>
-    </nav>
-    <div class="panels">
-      <section class="panel active" id="home">
-        <h1>Welcome Home 追憶</h1>
-        <p>This is your animated portfolio.</p>
-      </section>
-      <section class="panel" id="projects">
-        <h1>Projects</h1>
-        <p>Show off your work here.</p>
-      </section>
-      <section class="panel" id="clients">
-        <h1>Clients</h1>
-        <p>These are your clients.</p>
-      </section>
-      <section class="panel" id="contact">
-        <h1>Contact</h1>
-        <p>Let's connect!</p>
-      </section>
+
+  <div class="panel">
+  <!-- These are the tabs on the panels. -->
+
+    <div class="panelTabs">
+      <button class="ptabs.Links" onclick="openTab(event, 'home')" id="defOp">Home</button>
+      <button class="ptabs.Links" onclick="openTab(event, 'aboutme')">About me</button>
+      <button class="ptabs.Links" onclick="openTab(event, 'projects')">Projects</button>
+      <button class="ptabs.Links" onclick="openTab(event, 'contacts')">Contacts</button>
     </div>
+
+    <!-- These are the contents for each tab. -->
+    <div id="home" class="ptabsContent">
+      <h3>回想 PROJECT: RECALL.</h3>
+      <p>Hello! Thank you so much for checking my portfolio. Please do look at everything for examples of my projects and work (This website included!).
+         
+         If you have any questions or queries regarding my work, feel free to contact me! (All contact information can be found on the 'Contacts' tab on the left).
+      </p>
+    </div>
+
+    <div id="aboutme" class="ptabsContent">
+      <h3>About me.</h3>
+      <p>My name is Ozanne.</p>
+    </div>
+
+    <div id="projects" class="ptabsContent">
+      <h3>Projects.</h3>
+      <p>My name is Ozanne.</p>
+    </div>
+
+    <div id="contacts" class="ptabsContent">
+      <h3>Contact Information.</h3>
+      <p>My name is Ozanne.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+  
   </div>
-</div>
 </body>
 </html>

@@ -1,44 +1,29 @@
-console.log("🎬 Script running"); // Check if script loads at all
+document.getElementById("defOp").click();
+console.log("Main page script is running."); // Debug just to see if script loads at all. (' w ' ;;)
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log("✅ DOM fully loaded");
+function openTab(evt, tabName) {
 
-  const wrapper = document.getElementById('site-wrapper');
-  if (!wrapper) {
-    console.error("❌ Couldn't find #site-wrapper");
-    return;
+  var i, tabContent, tabLinks;
+
+  tabContent = document.getElementsByClassName("ptabsContent");
+  for (i = 0; i < tabContent.length; i++) {
+    tabContent[i].style.display = "none";
   }
 
-  // Fade in the whole site
-  gsap.to(wrapper, {
-    opacity: 1,
-    duration: 1,
-    ease: 'power2.out',
-    onComplete: () => {
-      wrapper.style.pointerEvents = 'auto';
-      console.log("✅ Animation complete, site visible");
-    }
-  });
+  tabLinks = document.getElementsByClassName("ptabsContent");
+  for (i = 0; i < tabLinks.length; i++) {
+    tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+  }
 
-  // Animate nav buttons
-  gsap.from('.nav button', {
-    opacity: 0,
-    y: 20,
-    duration: 0.6,
-    ease: 'power2.out',
-    stagger: 0.1,
-    delay: 1 // Wait until wrapper is fully visible
-  });
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className =+ " active";
+}
 
-  // Animate content of the active panel
-  gsap.from('.panel.active h1, .panel.active p', {
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    ease: 'power2.out',
-    stagger: 0.15,
-    delay: 1.2
-  });
+// This is the GSAP neon flashing animation, it works on page load only!
+window.addEventListener('load', () => {
+  const panel = document.querySelector('.panel');
+  const tl = gsap.timeline();
 
-  console.log("✅ Animation started");
+  tl.to(panel, {duration: 0.1, opacity: 0.2, boxShadow: "0 0 20px 5px #502430", repeat: 5, yoyo: true, ease: "power1.inOut"})
+    .to(panel, {duration: 0.5, opacity: 1, boxShadow: "0 0 15px 3px #502430", ease: "power2.out"});
 });
