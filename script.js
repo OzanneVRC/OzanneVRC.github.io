@@ -1,5 +1,5 @@
 document.getElementById("defOp").click();
-console.log("Main page script is running."); // Debug just to see if script loads at all. (' w ' ;;)
+console.log("Main page script is running."); // Check if script loads at all
 
 function openTab(evt, tabName) {
 
@@ -19,11 +19,32 @@ function openTab(evt, tabName) {
   evt.currentTarget.className =+ " active";
 }
 
-// This is the GSAP neon flashing animation, it works on page load only!
+// GSAP neon flashing animation on page load with quicker, staticky flicker
 window.addEventListener('load', () => {
   const panel = document.querySelector('.panel');
   const tl = gsap.timeline();
 
-  tl.to(panel, {duration: 0.1, opacity: 0.2, boxShadow: "0 0 20px 5px #502430", repeat: 5, yoyo: true, ease: "power1.inOut"})
-    .to(panel, {duration: 0.5, opacity: 1, boxShadow: "0 0 15px 3px #502430", ease: "power2.out"});
+  // Helper function to generate random glow intensity
+  function randomGlow() {
+    const intensity = Math.random() * 20 + 5; // 5 to 25px
+    return `0 0 ${intensity}px ${intensity / 2}px #502430`;
+  }
+
+  // Create flicker timeline with random glow and opacity flickers
+  for (let i = 0; i < 10; i++) {
+    tl.to(panel, {
+      duration: 0.05,
+      opacity: Math.random() * 0.5 + 0.5, // 0.5 to 1 opacity
+      boxShadow: randomGlow(),
+      ease: "power1.inOut"
+    });
+  }
+
+  // Stabilize to full opacity and subtle glow
+  tl.to(panel, {
+    duration: 0.3,
+    opacity: 1,
+    boxShadow: "0 0 15px 3px #502430",
+    ease: "power2.out"
+  });
 });
